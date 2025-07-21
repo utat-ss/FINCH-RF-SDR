@@ -1,12 +1,12 @@
 options:
   parameters:
-    author: finchrf03
+    author: Yutong Xin
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
-    copyright: ''
-    description: ''
+    copyright: University of Torono Aerospace Team
+    description: any <-> any
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
@@ -37,7 +37,7 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: qtgui_tab_widget_0@2
     label: Receiving Freq
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -46,20 +46,20 @@ blocks:
     step: '1'
     stop: '436000000'
     value: '433720000'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [336, 24.0]
+    coordinate: [344, 16.0]
     rotation: 0
     state: enabled
 - name: freq_shift
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
-    label: ''
+    gui_hint: qtgui_tab_widget_0@2
+    label: Frequency Shift
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -67,20 +67,20 @@ blocks:
     step: '1'
     stop: int(samp_rate/2)
     value: '200000'
-    widget: counter
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 40.0]
+    coordinate: [600, 16.0]
     rotation: 0
     state: enabled
 - name: freq_tx
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
-    label: Receiving Freq
+    gui_hint: qtgui_tab_widget_0@2
+    label: Transmitting Freq
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -88,12 +88,12 @@ blocks:
     step: '1'
     stop: '436000000'
     value: '433720000'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [480, 24.0]
+    coordinate: [472, 16.0]
     rotation: 0
     state: enabled
 - name: msg
@@ -121,40 +121,19 @@ blocks:
     step: samp_rate/100
     stop: samp_rate/2
     value: 200e3
-    widget: slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [864, 32.0]
-    rotation: 0
-    state: enabled
-- name: rx_gain
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Rx Gain Pluto
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.25'
-    stop: '71'
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1120, 32.0]
+    coordinate: [792, 24.0]
     rotation: 0
     state: enabled
 - name: rx_gain_b
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: qtgui_tab_widget_0@0
     label: Rx Gain Bladerf
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -163,12 +142,33 @@ blocks:
     step: '1'
     stop: '60'
     value: '20'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1368, 32.0]
+    coordinate: [1264, 16.0]
+    rotation: 0
+    state: enabled
+- name: rx_gain_p
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@1
+    label: Rx Gain Pluto
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.25'
+    stop: '71'
+    value: '0'
+    widget: eng_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1016, 24.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -183,32 +183,11 @@ blocks:
     coordinate: [176, 8.0]
     rotation: 0
     state: enabled
-- name: tx_gain
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Tx Gain Pluto
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '0.25'
-    stop: '89.75'
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [976, 32.0]
-    rotation: 0
-    state: enabled
 - name: tx_gain_b
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: qtgui_tab_widget_0@0
     label: Tx Gain Bladerf
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -217,31 +196,35 @@ blocks:
     step: '1'
     stop: '73'
     value: '20'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1248, 32.0]
+    coordinate: [1136, 24.0]
     rotation: 0
     state: enabled
-- name: blocks_freqshift_cc_0
-  id: blocks_freqshift_cc
+- name: tx_gain_p
+  id: variable_qtgui_range
   parameters:
-    affinity: ''
-    alias: ''
     comment: ''
-    freq: +int(freq_shift)
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    sample_rate: samp_rate
+    gui_hint: qtgui_tab_widget_0@1
+    label: Tx Gain Pluto
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.25'
+    stop: '89.75'
+    value: '0'
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 712.0]
+    coordinate: [904, 24.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_freqshift_cc_0_0
   id: blocks_freqshift_cc
   parameters:
@@ -296,7 +279,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    attenuation1: 89.75-tx_gain
+    attenuation1: 89.75-tx_gain_p
     bandwidth: '20000000'
     buffer_size: '32768'
     comment: ''
@@ -314,7 +297,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 180.0]
+    coordinate: [824, 180.0]
     rotation: 0
     state: disabled
 - name: iio_pluto_source_0
@@ -333,7 +316,7 @@ blocks:
     fstop: '0'
     gain1: '''manual'''
     len_tag_key: packet_len
-    manual_gain1: rx_gain
+    manual_gain1: rx_gain_p
     maxoutbuf: '0'
     minoutbuf: '0'
     quadrature: 'True'
@@ -346,35 +329,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [136, 636.0]
-    rotation: 0
-    state: disabled
-- name: qtgui_sink_x_0_0
-  id: qtgui_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    bw: samp_rate
-    comment: ''
-    fc: freq_rx
-    fftsize: '1024'
-    gui_hint: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    name: '""'
-    plotconst: 'True'
-    plotfreq: 'True'
-    plottime: 'True'
-    plotwaterfall: 'True'
-    rate: '5'
-    showports: 'False'
-    showrf: 'False'
-    type: complex
-    wintype: window.WIN_BLACKMAN_hARRIS
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [544, 896.0]
     rotation: 0
     state: disabled
 - name: qtgui_sink_x_0_0_0
@@ -433,6 +387,40 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [672, 432.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_tab_widget_0
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: 0,0,1,1
+    label0: BladeRF
+    label1: PlutoSDR
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: TransmissionFrequency
+    label3: Tab 3
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1144, 200.0]
     rotation: 0
     state: enabled
 - name: satlab_srs4_rx_0_0
@@ -537,11 +525,10 @@ blocks:
     state: enabled
 
 connections:
-- [blocks_freqshift_cc_0, '0', qtgui_sink_x_0_0, '0']
 - [blocks_freqshift_cc_0_0, '0', qtgui_sink_x_0_0_0, '0']
 - [blocks_freqshift_cc_0_0, '0', satlab_srs4_rx_0_0, '0']
 - [blocks_message_strobe_0, strobe, satlab_srs4_tx_0, csp_in]
-- [iio_pluto_source_0, '0', blocks_freqshift_cc_0, '0']
+- [iio_pluto_source_0, '0', blocks_freqshift_cc_0_0, '0']
 - [satlab_srs4_rx_0_0, csp_out, blocks_message_debug_0, log]
 - [satlab_srs4_tx_0, '0', iio_pluto_sink_0, '0']
 - [satlab_srs4_tx_0, '0', qtgui_sink_x_1, '0']

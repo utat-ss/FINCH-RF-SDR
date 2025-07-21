@@ -33,23 +33,11 @@ options:
     state: enabled
 
 blocks:
-- name: center_freq
-  id: variable
-  parameters:
-    comment: ''
-    value: int(2.2e9)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [360, 112.0]
-    rotation: 0
-    state: enabled
 - name: listen_frequency
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 1,1,2,1
     label: Listen Frequency
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -58,7 +46,7 @@ blocks:
     step: '0.25'
     stop: '108'
     value: '98.7'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
@@ -66,12 +54,12 @@ blocks:
     coordinate: [544, 48.0]
     rotation: 0
     state: enabled
-- name: rf_gain
+- name: rf_gain_bladerf
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
-    label: RF Gain
+    gui_hint: qtgui_tab_widget_0@0
+    label: RF Gain BladeRF
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -79,12 +67,54 @@ blocks:
     step: '1'
     stop: '60'
     value: '-1'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 136.0]
+    coordinate: [832, 48.0]
+    rotation: 0
+    state: enabled
+- name: rf_gain_pluto
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@1
+    label: RF Gain Pluto
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '0.25'
+    stop: '73'
+    value: '0'
+    widget: eng_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1072, 48.0]
+    rotation: 0
+    state: enabled
+- name: rf_gain_rtl
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: qtgui_tab_widget_0@2
+    label: RF Gain RTL
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '-1'
+    step: '1'
+    stop: '60'
+    value: '-1'
+    widget: eng_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [960, 48.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -103,7 +133,7 @@ blocks:
   id: variable_qtgui_range
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 0,1,1,1
     label: Tune Frequency
     min_len: '200'
     orient: QtCore.Qt.Horizontal
@@ -112,31 +142,14 @@ blocks:
     step: '0.25'
     stop: '108'
     value: '98.7'
-    widget: counter_slider
+    widget: eng_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 48.0]
+    coordinate: [672, 48.0]
     rotation: 0
     state: enabled
-- name: analog_wfm_rcv_0
-  id: analog_wfm_rcv
-  parameters:
-    affinity: ''
-    alias: ''
-    audio_decimation: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    quad_rate: ''
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1248, 144.0]
-    rotation: 0
-    state: disabled
 - name: analog_wfm_rcv_1
   id: analog_wfm_rcv
   parameters:
@@ -188,22 +201,35 @@ blocks:
     coordinate: [368, 424.0]
     rotation: 0
     state: enabled
-- name: blocks_wavfile_source_0
-  id: blocks_wavfile_source
+- name: iio_pluto_source_0
+  id: iio_pluto_source
   parameters:
     affinity: ''
     alias: ''
+    bandwidth: '20000000'
+    bbdc: 'True'
+    buffer_size: '32768'
     comment: ''
-    file: ''
+    filter: ''
+    filter_source: '''Auto'''
+    fpass: '0'
+    frequency: int(tune_frequency*1e6)
+    fstop: '0'
+    gain1: '''manual'''
+    len_tag_key: packet_len
+    manual_gain1: rf_gain_pluto
     maxoutbuf: '0'
     minoutbuf: '0'
-    nchan: '1'
-    repeat: 'True'
+    quadrature: 'True'
+    rfdc: 'True'
+    samplerate: samp_rate
+    type: fc32
+    uri: ''
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [344, 304.0]
+    coordinate: [80, 608.0]
     rotation: 0
     state: enabled
 - name: low_pass_filter_0
@@ -227,7 +253,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [664, 380.0]
+    coordinate: [664, 384.0]
     rotation: 0
     state: enabled
 - name: qtgui_freq_sink_x_0
@@ -392,6 +418,40 @@ blocks:
     coordinate: [952, 608.0]
     rotation: 0
     state: enabled
+- name: qtgui_tab_widget_0
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: 0,0,1,1
+    label0: BladeRF
+    label1: PlutoSDR
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: RTL SDR
+    label3: Tab 3
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1224, 128.0]
+    rotation: 0
+    state: enabled
 - name: rational_resampler_xxx_0
   id: rational_resampler_xxx
   parameters:
@@ -422,7 +482,7 @@ blocks:
     comment: ''
     dev_args: ''
     freq_correction: '0'
-    gain: rf_gain
+    gain: rf_gain_bladerf
     maxoutbuf: '0'
     minoutbuf: '0'
     samp_rate: samp_rate
@@ -431,18 +491,67 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [96, 424.0]
+    coordinate: [88, 424.0]
     rotation: 0
-    state: enabled
+    state: disabled
+- name: soapy_plutosdr_source_0
+  id: soapy_plutosdr_source
+  parameters:
+    affinity: ''
+    agc: 'False'
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: (tune_frequency)*int(1e6)
+    comment: ''
+    dev_args: ''
+    gain: rf_gain_pluto
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [96, 504.0]
+    rotation: 0
+    state: disabled
+- name: soapy_rtlsdr_source_0
+  id: soapy_rtlsdr_source
+  parameters:
+    affinity: ''
+    agc: 'False'
+    alias: ''
+    bias: 'False'
+    bufflen: '16384'
+    center_freq: (tune_frequency)*int(1e6)
+    comment: ''
+    dev_args: ''
+    freq_correction: '0'
+    gain: rf_gain_rtl
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [104, 312.0]
+    rotation: 0
+    state: disabled
 
 connections:
 - [analog_wfm_rcv_1, '0', rational_resampler_xxx_0, '0']
 - [blocks_freqshift_cc_0, '0', low_pass_filter_0, '0']
 - [blocks_freqshift_cc_0, '0', qtgui_freq_sink_x_0, '0']
+- [iio_pluto_source_0, '0', blocks_freqshift_cc_0, '0']
 - [low_pass_filter_0, '0', analog_wfm_rcv_1, '0']
 - [low_pass_filter_0, '0', qtgui_freq_sink_x_0_0, '0']
 - [rational_resampler_xxx_0, '0', audio_sink_0, '0']
 - [soapy_bladerf_source_0, '0', blocks_freqshift_cc_0, '0']
+- [soapy_plutosdr_source_0, '0', blocks_freqshift_cc_0, '0']
+- [soapy_rtlsdr_source_0, '0', blocks_freqshift_cc_0, '0']
 
 metadata:
   file_format: 1
