@@ -151,7 +151,7 @@ blocks:
     step: '1'
     stop: '1'
     value: '0'
-    widget: slider
+    widget: dial
   states:
     bus_sink: false
     bus_source: false
@@ -359,7 +359,7 @@ blocks:
     bus_structure: null
     coordinate: [1384, 928.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: analog_nbfm_rx_0_0
   id: analog_nbfm_rx
   parameters:
@@ -489,14 +489,14 @@ blocks:
     bus_structure: null
     coordinate: [1632, 800.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: blocks_wavfile_source_0
   id: blocks_wavfile_source
   parameters:
     affinity: ''
     alias: ''
     comment: ''
-    file: /home/yutong/guitar.mp3
+    file: /home/yutong/FINCH-RF-SDR/grc/guitar.mp3
     maxoutbuf: '0'
     minoutbuf: '0'
     nchan: '1'
@@ -825,9 +825,7 @@ blocks:
 
 connections:
 - [analog_nbfm_rx_0, '0', blocks_selector_0, '1']
-- [analog_nbfm_rx_0, '0', zeromq_push_sink_0, '0']
 - [analog_nbfm_rx_0_0, '0', blocks_selector_0, '0']
-- [analog_nbfm_rx_0_0, '0', zeromq_push_sink_0, '0']
 - [analog_nbfm_tx_0, '0', rational_resampler_xxx_0, '0']
 - [analog_simple_squelch_cc_0, '0', analog_nbfm_rx_0, '0']
 - [analog_simple_squelch_cc_0, '0', qtgui_sink_x_0_0_0_0, '0']

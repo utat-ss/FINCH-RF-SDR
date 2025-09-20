@@ -369,7 +369,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    file: /home/yutong/guitar.mp3
+    file: /home/yutong/FINCH-RF-SDR/grc/guitar.mp3
     maxoutbuf: '0'
     minoutbuf: '0'
     nchan: '1'
